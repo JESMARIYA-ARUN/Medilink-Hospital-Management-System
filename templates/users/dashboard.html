@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center mt-5">
+        <h2>Welcome, {{ request.user.username }}!</h2>
+        <p>Role: {{ request.user.role|default:"N/A" }}</p>
+
+        <div class="mt-4">
+            {% if request.user.role == 'patient' %}
+                <a href="{% url 'appointments:create' %}" class="btn btn-success">Book Appointment</a>
+                <a href="{% url 'appointments:list' %}" class="btn btn-primary ms-2">My Appointments</a>
+            {% elif request.user.role == 'doctor' %}
+                <a href="{% url 'appointments:list' %}" class="btn btn-primary">My Appointments</a>
+                <!-- You can add more doctor-specific options here -->
+            {% endif %}
+            <a href="{% url 'users:logout' %}" class="btn btn-danger ms-2">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

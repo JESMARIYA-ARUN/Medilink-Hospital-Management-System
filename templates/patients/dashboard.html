@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2>Welcome, {{ request.user.username }}!</h2>
+        <p class="text-muted">Here's a quick overview of your account and health info.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Upcoming Appointments -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-success">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check display-4 text-success mb-2"></i>
+                    <h5 class="card-title">Upcoming Appointments</h5>
+                    <p class="h3">{{ upcoming_appointments }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Doctors -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-primary">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-badge display-4 text-primary mb-2"></i>
+                    <h5 class="card-title">Total Doctors</h5>
+                    <p class="h3">{{ total_doctors }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Past Appointments -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-info">
+                <div class="card-body text-center">
+                    <i class="bi bi-clock-history display-4 text-info mb-2"></i>
+                    <h5 class="card-title">Past Appointments</h5>
+                    <p class="h3">{{ past_appointments }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Tips Section -->
+    <div class="mt-5">
+        <h4 class="mb-3">Health Tips</h4>
+        <div class="card shadow-sm p-3">
+            <ul class="mb-0">
+                <li>Stay hydrated and drink at least 8 glasses of water a day.</li>
+                <li>Exercise regularly, at least 30 minutes daily.</li>
+                <li>Maintain a balanced diet rich in fruits and vegetables.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

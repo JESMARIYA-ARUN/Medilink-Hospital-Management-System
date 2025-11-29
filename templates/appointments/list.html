@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">My Appointments</h2>
+
+     {% if request.user.role == "patient" %}
+    <div class="text-end mb-3">
+        <a href="{% url 'appointments:create' %}" class="btn btn-primary">
+            Book New Appointment
+        </a>
+    </div>
+    {% endif %}
+
+
+    {% if appointments %}
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                {% if request.user.role == "patient" %}
+                <th>Doctor</th>
+                {% else %}
+                <th>Patient</th>
+                {% endif %}
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for a in appointments %}
+            <tr>
+                {% if request.user.role == "patient" %}
+                <td>{{ a.doctor.username }}</td>
+                {% else %}
+                <td>{{ a.patient.username }}</td>
+                {% endif %}
+                <td>{{ a.date }}</td>
+                <td>{{ a.time }}</td>
+                <td>
+                    <a href="{% url 'appointments:detail' a.id %}" class="btn btn-sm btn-info">
+                        View
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <p class="text-center text-muted">No appointments found.</p>
+    {% endif %}
+</div>
+{% endblock %}

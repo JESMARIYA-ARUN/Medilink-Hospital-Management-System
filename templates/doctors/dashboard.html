@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2>Welcome, Dr. {{ request.user.username }}!</h2>
+        <p class="text-muted">Here’s a summary of your schedule and patients.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Today’s Appointments -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-primary">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-day display-4 text-primary mb-2"></i>
+                    <h5 class="card-title">Today’s Appointments</h5>
+                    <p class="h3">{{ todays_appointments }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-success">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check display-4 text-success mb-2"></i>
+                    <h5 class="card-title">Upcoming Appointments</h5>
+                    <p class="h3">{{ upcoming_appointments }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Patients -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-4 border-info">
+                <div class="card-body text-center">
+                    <i class="bi bi-people display-4 text-info mb-2"></i>
+                    <h5 class="card-title">Total Patients</h5>
+                    <p class="h3">{{ total_patients }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Notifications -->
+    <div class="mt-5">
+        <h4 class="mb-3">Notifications</h4>
+        <div class="card shadow-sm p-3">
+            <ul class="mb-0">
+                <li>No new messages.</li>
+                <li>Check your upcoming appointments.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
