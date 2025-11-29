@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o5kvi!icdtet5bp(8^r2mvbs7=5f@s-yibuss%4%+rlx&fmv@h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medilink.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['medilink-hospital-management-system.onrender.com', 'localhost']
 
 
 
