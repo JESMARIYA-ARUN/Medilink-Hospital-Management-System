@@ -92,19 +92,18 @@ WSGI_APPLICATION = 'medilink.wsgi.application'
 env = environ.Env()
 environ.Env.read_env()
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'medilink_db',
-        'USER': 'medilink_user',
-        'PASSWORD': 'Medilink123',
-        "HOST": "dpg-d4lm12vpm1nc73djv8h0-a",
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "medilink_postgres_db",       # database name from Render
+        "USER": "medilink_postgres_db_user",  # user from Render
+        "PASSWORD": "nXmMP2d5NDR29wqMre36YptiN5Iy8V14",   # copy exactly from Render
+        "HOST": "dpg-d4lm12vpm1nc73djv8h0-a", # internal host from Render
+        "PORT": "5432",
     }
 }
+
 
 
 
