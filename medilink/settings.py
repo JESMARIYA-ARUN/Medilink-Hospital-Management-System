@@ -93,16 +93,25 @@ env = environ.Env()
 environ.Env.read_env()
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "medilink_postgres_db",       # database name from Render
+#         "USER": "medilink_postgres_db_user",  # user from Render
+#         "PASSWORD": "nXmMP2d5NDR29wqMre36YptiN5Iy8V14",   # copy exactly from Render
+#         "HOST": "dpg-d4lm12vpm1nc73djv8h0-a", # internal host from Render
+#         "PORT": "5432",
+#     }
+# }
+import dj_database_url
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "medilink_postgres_db",       # database name from Render
-        "USER": "medilink_postgres_db_user",  # user from Render
-        "PASSWORD": "nXmMP2d5NDR29wqMre36YptiN5Iy8V14",   # copy exactly from Render
-        "HOST": "dpg-d4lm12vpm1nc73djv8h0-a", # internal host from Render
-        "PORT": "5432",
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+    )
 }
+
 
 
 
