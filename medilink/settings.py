@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o5kvi!icdtet5bp(8^r2mvbs7=5f@s-yibuss%4%+rlx&fmv@h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+
 
 ALLOWED_HOSTS = ['medilink-hospital-management-system.onrender.com', 'localhost']
 
@@ -79,12 +80,7 @@ TEMPLATES = [
     },
 ]
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# For Render static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 WSGI_APPLICATION = 'medilink.wsgi.application'
@@ -152,12 +148,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),  # global static folder
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # for collectstatic in production
+# For Render static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # ----------------------------------
 # EMAIL CONFIGURATION (SMTP)
@@ -167,7 +162,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "jesmariyawilson123@gmail.com"
-EMAIL_HOST_PASSWORD = "qcub twgt fqzy isfn" 
+EMAIL_HOST_PASSWORD = "qcub twgt fqzy isfn"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
